@@ -1,29 +1,23 @@
-
 import 'package:binova_mobile/models/enums.dart';
 import 'package:binova_mobile/models/ocorrencia.dart';
 import 'package:binova_mobile/models/ponto_coleta.dart';
 import 'package:binova_mobile/models/usuario.dart';
 
-// Representa os erros de validação ao registrar ocorrências.
 class ValidacaoOcorrenciaException implements Exception {
-  // Inicializa a exceção com a mensagem informada.
   const ValidacaoOcorrenciaException(this.mensagem);
-
   final String mensagem;
 
-  // Retorna a mensagem de erro.
   @override
   String toString() => mensagem;
 }
 
-// Responsável por consultar, validar e registrar ocorrências.
+// Mantém os registros isolados na sessão, incluindo novos cadastros.
 class OcorrenciaService {
-  // Inicializa os dados da sessão sem modificar as listas originais.
   OcorrenciaService({
     required Iterable<Usuario> usuarios,
     required Iterable<PontoColeta> pontosColeta,
     required Iterable<Ocorrencia> ocorrencias,
-  }) : _usuarios = List.unmodifiable(usuarios),
+  }) : _usuarios = List.of(usuarios),
        _pontos = List.unmodifiable(pontosColeta),
        _ocorrencias = List.of(ocorrencias);
 
@@ -31,81 +25,102 @@ class OcorrenciaService {
   final List<PontoColeta> _pontos;
   final List<Ocorrencia> _ocorrencias;
 
-  // Retorna somente os usuários com perfil de cidadão.
-  List<Usuario> listarCidadaos() {
+  // Pesquisa cidadãos por ID, nome ou e-mail (sem diferenciar maiúsculas).
+  List<Usuario> pesquisarCidadaos(String termo) {
+    final busca = termo.trim().toLowerCase();
+    if (busca.isEmpty) return List.unmodifiable(<Usuario>[]);
     return List.unmodifiable(
-      _usuarios.where(
-        (usuario) => usuario.papel == PapelUsuario.cidadao,
-      ),
+      listarCidadaos().where((usuario) =>
+          usuario.id.toString() == busca ||
+          usuario.nome.toLowerCase().contains(busca) ||
+          usuario.email.toLowerCase().contains(busca)),
     );
   }
 
-  // Valida se o usuário existe e possui perfil de cidadão.
-  Usuario validarCidadao(int usuarioId) {
+  // Cadastra um cidadão fictício apenas na sessão atual.
+  Usuario cadastrarCidadao({
+    required String nome,
+    required String email,
+    required DateTime referencia,
+  }) {
+    final nomeLimpo = nome.trim();
+    final emailLimpo = email.trim().toLowerCase();
+    if (nomeLimpo.length < 3) {
+      throw const ValidacaoOcorrenciaException(
+        'Informe um nome com pelo menos 3 caracteres.',
+      );
+    }
+    final emailValido = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+    if (!emailValido.hasMatch(emailLimpo)) {
+      throw const ValidacaoOcorrenciaException('Informe um e-mail válido.');
+    }
+    if (_usuarios.any((usuario) => usuario.email.toLowerCase() == emailLimpo)) {
+      throw const ValidacaoOcorrenciaException('Este e-mail já está cadastrado.');
+    }
+    var maiorId = 0;
     for (final usuario in _usuarios) {
+      if (usuario.id > maiorId) maiorId = usuario.id;
+    }
+    final novo = Usuario(
+      id: maiorId + 1,
+      nome: nomeLimpo,
+      email: emailLimpo,
+      senhaHash: 'cadastro-simulado-${maiorId + 1}',
+      papel: PapelUsuario.cidadao,
+      criadoEm: referencia,
+    );
+    _usuarios.add(novo);
+    return novo;
+  }
+
+  List<Usuario> listarCidadaos() => List.unmodifiable(
+    _usuarios.where((Usuario usuario) => usuario.papel == PapelUsuario.cidadao),
+  );
+
+  Usuario validarCidadao(int usuarioId) {
+    for (final Usuario usuario in _usuarios) {
       if (usuario.id == usuarioId) {
         if (usuario.papel != PapelUsuario.cidadao) {
           throw const ValidacaoOcorrenciaException(
             'Selecione um cidadão. Administradores não participam deste fluxo.',
           );
         }
-
         return usuario;
       }
     }
-
-    throw const ValidacaoOcorrenciaException(
-      'Cidadão não encontrado.',
-    );
+    throw const ValidacaoOcorrenciaException('Cidadão não encontrado.');
   }
 
-  // Verifica se o ponto de coleta existe e está ativo.
   PontoColeta validarPontoAtivo(int pontoId) {
-    for (final ponto in _pontos) {
+    for (final PontoColeta ponto in _pontos) {
       if (ponto.id == pontoId) {
         if (!ponto.ativo) {
           throw const ValidacaoOcorrenciaException(
             'O ponto de coleta está inativo.',
           );
         }
-
         return ponto;
       }
     }
-
-    throw const ValidacaoOcorrenciaException(
-      'Ponto de coleta não encontrado.',
-    );
+    throw const ValidacaoOcorrenciaException('Ponto de coleta não encontrado.');
   }
 
-  // Retorna todas as ocorrências registradas na sessão.
-  List<Ocorrencia> listar() {
-    return List.unmodifiable(_ocorrencias);
-  }
+  List<Ocorrencia> listar() => List.unmodifiable(_ocorrencias);
 
-  // Consulta as ocorrências pertencentes a um cidadão.
   List<Ocorrencia> listarPorCidadao(int usuarioId) {
     validarCidadao(usuarioId);
-
     return List.unmodifiable(
-      _ocorrencias.where(
-        (item) => item.usuarioId == usuarioId,
-      ),
+      _ocorrencias.where((Ocorrencia item) => item.usuarioId == usuarioId),
     );
   }
 
-  // Busca uma ocorrência pelo seu identificador.
   Ocorrencia? buscarPorId(int id) {
-    for (final ocorrencia in _ocorrencias) {
-      if (ocorrencia.id == id) {
-        return ocorrencia;
-      }
+    for (final Ocorrencia ocorrencia in _ocorrencias) {
+      if (ocorrencia.id == id) return ocorrencia;
     }
-
     return null;
   }
 
-  // Valida os dados e registra uma nova ocorrência.
   Ocorrencia registrar({
     required int usuarioId,
     required int pontoColetaId,
@@ -115,26 +130,17 @@ class OcorrenciaService {
   }) {
     validarCidadao(usuarioId);
     validarPontoAtivo(pontoColetaId);
-
-    final texto = descricao.trim();
-
+    final String texto = descricao.trim();
     if (texto.isEmpty) {
       throw const ValidacaoOcorrenciaException(
         'A descrição não pode ficar vazia.',
       );
     }
-
-    // Identifica o maior ID para gerar o próximo registro.
     int maiorId = 0;
-
-    for (final item in _ocorrencias) {
-      if (item.id > maiorId) {
-        maiorId = item.id;
-      }
+    for (final Ocorrencia item in _ocorrencias) {
+      if (item.id > maiorId) maiorId = item.id;
     }
-
-    // Cria a ocorrência com o status inicial aberto.
-    final nova = Ocorrencia(
+    final Ocorrencia nova = Ocorrencia(
       id: maiorId + 1,
       pontoColetaId: pontoColetaId,
       usuarioId: usuarioId,
@@ -144,10 +150,7 @@ class OcorrenciaService {
       criadoEm: referencia,
       atualizadoEm: referencia,
     );
-
-    // Adiciona o registro à sessão atual.
     _ocorrencias.add(nova);
-
     return nova;
   }
 }
