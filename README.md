@@ -140,8 +140,11 @@ TLS nem altere configurações globais para executar a demonstração.
 - Sem persistência permanente, banco de dados ou integração com backend/API REST.
 - Sem comunicação com sensores físicos ou atualização automática das leituras.
 - Sem Flutter ou interface gráfica implementada neste pacote.
-- O protótipo visual Figma é desenvolvido separadamente e não integra esta entrega
-  funcional. Não há link de protótipo informado neste projeto.
+- Protótipo feito em Figma simulando a interface gráfica  
+
+## Protótipo Figma - Binova 
+
+Binova ♻️ - https://www.figma.com/make/upgwPsqNuVbJIoNBMjSLWz/Prot%C3%B3tipo-Mobile-Binova?t=kAh9k60csVqNpCqS-1
 
 ## Integrantes
 
