@@ -1,0 +1,166 @@
+Comando: dart run bin/main.dart
+Executado em: 2026-11-19T15:02:06.2115196-03:00
+Codigo de saida: 0
+
+--- STDOUT (capturado) ---
+Bem-vindo à Binova!
+Simulação acadêmica — Global Solution 2026/2 — FIAP.
+Dados simulados em memória, sem sensores físicos.
+
+===== BINOVA =====
+Monitoramento inteligente de resíduos
+
+1 - Listar pontos de coleta
+2 - Consultar ponto por ID
+3 - Registrar ocorrência
+4 - Consultar minhas ocorrências
+0 - Sair
+
+Escolha uma opção:
+
+===== PONTOS DE COLETA =====
+
+ID: 1
+Nome: Praça das Acácias
+Localização: Ao lado do coreto da praça fictícia
+Nível: 25%
+Situação: DISPONIVEL
+
+ID: 2
+Nome: Parque do Ipê
+Localização: Entrada leste, junto à ciclovia
+Nível: 65%
+Situação: ATENCAO
+
+ID: 3
+Nome: Mercado Vila Aurora
+Localização: Área externa próxima ao bicicletário
+Nível: 92%
+Situação: PROXIMA_DO_LIMITE
+
+ID: 4
+Nome: Escola Horizonte
+Localização: Calçada da entrada principal
+Nível: Indisponível
+Situação: SEM_DADOS_ATUALIZADOS
+
+ID: 5
+Nome: Centro Cultural Girassol
+Localização: Pátio lateral junto ao jardim
+Nível: Indisponível
+Situação: SEM_DADOS_ATUALIZADOS
+
+ID: 6
+Nome: Terminal Nova Esperança
+Localização: Passarela de acesso à plataforma A
+Nível: Indisponível
+Situação: SEM_DADOS_ATUALIZADOS
+
+ID: 7
+Nome: Ginásio das Palmeiras
+Localização: Estacionamento, próximo ao portão B
+Nível: 85%
+Situação: PROXIMA_DO_LIMITE
+
+===== BINOVA =====
+Monitoramento inteligente de resíduos
+
+1 - Listar pontos de coleta
+2 - Consultar ponto por ID
+3 - Registrar ocorrência
+4 - Consultar minhas ocorrências
+0 - Sair
+
+Escolha uma opção:
+Informe o ID do ponto de coleta:
+
+===== DETALHES DO PONTO =====
+
+ID: 3
+Nome: Mercado Vila Aurora
+Localização: Área externa próxima ao bicicletário
+Capacidade: 120 litros
+Ativo: Sim
+
+Última leitura: 19/11/2026 15:01:06 (horário local)
+Nível de preenchimento: 92%
+Classificação: PROXIMA_DO_LIMITE
+
+===== BINOVA =====
+Monitoramento inteligente de resíduos
+
+1 - Listar pontos de coleta
+2 - Consultar ponto por ID
+3 - Registrar ocorrência
+4 - Consultar minhas ocorrências
+0 - Sair
+
+Escolha uma opção:
+Identificação demonstrativa: seleção de ID, sem autenticação ou garantia real de privacidade.
+ID: 1 - Ana Lima
+ID: 2 - Bruno Reis
+ID: 3 - Clara Souza
+ID: 4 - Diego Alves
+Informe o ID do cidadão:
+Informe o ID do ponto de coleta:
+1 - LIXEIRA CHEIA
+2 - DESCARTE IRREGULAR
+3 - ESTRUTURA DANIFICADA
+4 - OUTRO
+Selecione o tipo de ocorrência:
+Descreva o problema:
+Ocorrência registrada com sucesso! ID: 6
+
+===== BINOVA =====
+Monitoramento inteligente de resíduos
+
+1 - Listar pontos de coleta
+2 - Consultar ponto por ID
+3 - Registrar ocorrência
+4 - Consultar minhas ocorrências
+0 - Sair
+
+Escolha uma opção:
+Identificação demonstrativa: seleção de ID, sem autenticação ou garantia real de privacidade.
+ID: 1 - Ana Lima
+ID: 2 - Bruno Reis
+ID: 3 - Clara Souza
+ID: 4 - Diego Alves
+Informe o ID do cidadão:
+
+===== MINHAS OCORRÊNCIAS =====
+
+Ocorrência ID: 1
+Ponto: 3 - Mercado Vila Aurora
+Tipo: LIXEIRA_CHEIA
+Descrição: Recipiente cheio próximo ao mercado.
+Status: ABERTA
+Criada em: 19/11/2026 13:02:06 (horário local)
+
+Ocorrência ID: 5
+Ponto: 7 - Ginásio das Palmeiras
+Tipo: LIXEIRA_CHEIA
+Descrição: Recipiente do ginásio próximo da capacidade máxima.
+Status: EM_ATENDIMENTO
+Criada em: 19/11/2026 09:02:06 (horário local)
+
+Ocorrência ID: 6
+Ponto: 3 - Mercado Vila Aurora
+Tipo: LIXEIRA_CHEIA
+Descrição: Recipiente cheio na entrada do mercado.
+Status: ABERTA
+Criada em: 19/11/2026 15:02:06 (horário local)
+
+===== BINOVA =====
+Monitoramento inteligente de resíduos
+
+1 - Listar pontos de coleta
+2 - Consultar ponto por ID
+3 - Registrar ocorrência
+4 - Consultar minhas ocorrências
+0 - Sair
+
+Escolha uma opção:
+Binova encerrada. Até logo!
+
+--- STDERR (capturado) ---

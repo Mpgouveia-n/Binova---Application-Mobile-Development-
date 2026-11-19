@@ -1,0 +1,11 @@
+name: binova_mobile
+description: Simulação acadêmica da Binova em Dart para console.
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.13.1
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6

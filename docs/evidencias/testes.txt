@@ -1,0 +1,183 @@
+Comando: dart test --reporter expanded
+Executado em: 2026-11-19T15:02:01.9330806-03:00
+Codigo de saida: 0
+
+--- STDOUT (capturado) ---
+00:00 +0: loading test\apresentacao_test.dart
+00:00 +0: test\apresentacao_test.dart: apresenta boas-vindas, contexto acadêmico e próximas etapas
+00:00 +1: test\binova_console_test.dart: menu exibe opções, contexto simulado e encerra com zero
+00:00 +2: test\binova_console_test.dart: opção inválida informa erro e mantém menu disponível
+00:00 +3: test\binova_console_test.dart: opção vazia ou com espaços recebe mensagem amigável
+00:00 +4: test\binova_console_test.dart: espaços ao redor da opção e do ID são aceitos
+00:00 +5: test\binova_console_test.dart: EOF no menu encerra sem nova leitura nem repetição
+00:00 +6: test\binova_console_test.dart: EOF na solicitação de ID encerra sem voltar ao menu
+00:00 +7: test\binova_console_test.dart: opção 1 lista IDs e nomes dos sete ativos e omite inativo
+00:00 +8: test\binova_console_test.dart: listagem apresenta níveis e classificações fornecidas pelo serviço
+00:00 +9: test\binova_console_test.dart: lista vazia informa ausência e permite retornar ao menu
+00:00 +10: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +11: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +12: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +13: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +14: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +15: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +16: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +17: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +18: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +19: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +20: test\dados_mockados_test.dart: quantidades de registros e IDs positivos e únicos por entidade
+00:00 +21: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +22: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +23: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +24: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +25: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +26: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +27: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +28: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +29: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +30: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +31: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +32: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +33: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +34: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +35: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +36: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +37: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +38: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +39: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +40: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +41: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +42: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +43: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +44: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +45: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +46: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +47: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +48: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +49: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +50: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +51: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +52: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +53: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +54: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +55: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +56: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +57: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +58: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +59: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +60: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +61: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +62: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +63: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +64: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +65: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +66: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +67: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +68: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +69: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +70: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +71: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +72: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +73: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +74: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +75: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +76: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +77: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +78: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +79: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +80: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +81: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +82: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +83: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +84: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +85: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +86: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +87: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +88: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +89: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +90: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +91: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +92: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +93: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +94: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +95: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +96: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +97: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +98: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +99: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +100: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +101: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +102: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +103: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +104: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +105: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +106: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +107: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +108: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +109: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +110: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +111: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +112: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +113: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +114: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +115: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +116: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +117: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +118: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +119: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +120: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +121: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +122: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +123: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +124: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +125: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +126: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +127: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +128: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +129: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +130: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +131: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +132: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +133: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +134: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +135: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +136: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +137: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +138: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +139: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +140: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +141: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +142: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +143: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +144: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +145: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +146: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +147: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +148: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +149: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +150: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +151: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +152: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +153: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +154: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +155: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +156: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +157: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +158: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +159: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +160: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +161: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +162: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +163: test\integracao_mvp_test.dart: A: main real mantém cadastro e consulta durante jornada completa
+00:00 +164: test\integracao_mvp_test.dart: B: main real isola cidadãos e preserva o registro ao alternar consultas
+00:00 +165: test\integracao_mvp_test.dart: C: main real rejeita cadastro e aceita o seguinte sem perder dados ou ID
+00:01 +166: test\integracao_mvp_test.dart: D: main real encerra por EOF em menu principal
+00:01 +167: test\integracao_mvp_test.dart: D: main real encerra por EOF em seleção do cidadão
+00:01 +168: test\integracao_mvp_test.dart: D: main real encerra por EOF em seleção do ponto
+00:02 +169: test\integracao_mvp_test.dart: D: main real encerra por EOF em seleção do tipo
+00:02 +170: test\integracao_mvp_test.dart: D: main real encerra por EOF em descrição
+00:02 +171: test\integracao_mvp_test.dart: D: main real encerra por EOF em consulta de ocorrências
+00:02 +172: test\integracao_mvp_test.dart: C/D: falha e EOF preservam contagem e objetos no armazenamento real
+00:02 +173: test\integracao_mvp_test.dart: E: mesmo ponto envelhece na mesma sessão sem exibir percentual antigo
+00:02 +174: All tests passed!
+
+--- STDERR (capturado) ---
