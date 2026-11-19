@@ -1,4 +1,7 @@
+
+ // Representa um ponto de coleta cadastrado no sistema.
 class PontoColeta {
+  // Inicializa o ponto e valida sua capacidade.
   PontoColeta({
     required this.id,
     required this.nome,

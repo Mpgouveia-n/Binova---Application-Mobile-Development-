@@ -1,6 +1,9 @@
+
 import 'enums.dart';
 
+// Representa uma ocorrência registrada por um usuário.
 class Ocorrencia {
+  // Inicializa a ocorrência e valida suas datas.
   Ocorrencia({
     required this.id,
     required this.pontoColetaId,

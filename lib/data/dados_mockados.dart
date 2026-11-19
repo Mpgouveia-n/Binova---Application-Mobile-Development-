@@ -1,11 +1,13 @@
+
 import 'package:binova_mobile/models/enums.dart';
 import 'package:binova_mobile/models/leitura_sensor.dart';
 import 'package:binova_mobile/models/ocorrencia.dart';
 import 'package:binova_mobile/models/ponto_coleta.dart';
 import 'package:binova_mobile/models/usuario.dart';
 
-/// Cenário fictício em memória. Cada criação produz uma base independente.
+// Armazena os dados fictícios utilizados na simulação do Binova.
 class DadosMockados {
+  // Inicializa as coleções sem permitir alterações externas.
   DadosMockados._({
     required List<Usuario> usuarios,
     required List<PontoColeta> pontosColeta,
@@ -16,10 +18,13 @@ class DadosMockados {
        leituras = List.unmodifiable(leituras),
        ocorrencias = List.unmodifiable(ocorrencias);
 
+  // Cria uma base independente com dados simulados.
   factory DadosMockados.criar({required DateTime referencia}) {
-    final DateTime criacao = referencia.subtract(const Duration(days: 30));
+    final criacao = referencia.subtract(const Duration(days: 30));
+
+    // Cria quatro cidadãos e um administrador.
     final List<Usuario> usuarios = [
-      for (final (int indice, String nome) in [
+      for (final (indice, nome) in [
         'Ana Lima',
         'Bruno Reis',
         'Clara Souza',
@@ -30,13 +35,13 @@ class DadosMockados {
           id: indice + 1,
           nome: nome,
           email: 'usuario${indice + 1}@example.com',
-          // Marcador fictício: não é senha real nem hash criptográfico.
           senhaHash: 'hash-simulado-${indice + 1}',
           papel: indice == 4 ? PapelUsuario.admin : PapelUsuario.cidadao,
           criadoEm: criacao,
         ),
     ];
 
+    // Define os locais fictícios dos pontos de coleta.
     final List<(String, String)> locais = [
       ('Praça das Acácias', 'Ao lado do coreto da praça fictícia'),
       ('Parque do Ipê', 'Entrada leste, junto à ciclovia'),
@@ -47,8 +52,10 @@ class DadosMockados {
       ('Ginásio das Palmeiras', 'Estacionamento, próximo ao portão B'),
       ('Biblioteca Sabiá', 'Área externa em manutenção'),
     ];
+
+    // Cria oito pontos de coleta, sendo um inativo.
     final List<PontoColeta> pontos = [
-      for (final (int indice, (String nome, String local)) in locais.indexed)
+      for (final (indice, (nome, local)) in locais.indexed)
         PontoColeta(
           id: indice + 1,
           nome: nome,
@@ -59,30 +66,33 @@ class DadosMockados {
         ),
     ];
 
-    LeituraSensor leitura(int id, int pontoId, double nivel, int minutos) =>
-        LeituraSensor(
-          id: id,
-          pontoColetaId: pontoId,
-          // Distância fictícia para um recipiente simulado de 100 cm.
-          distanciaCm: 100 - nivel,
-          nivelPercentual: nivel,
-          registradoEm: referencia.subtract(Duration(minutes: minutos)),
-        );
+    // Cria uma leitura simulada para um ponto de coleta.
+    LeituraSensor leitura(int id, int pontoId, double nivel, int minutos) {
+      return LeituraSensor(
+        id: id,
+        pontoColetaId: pontoId,
+        distanciaCm: 100 - nivel,
+        nivelPercentual: nivel,
+        registradoEm: referencia.subtract(Duration(minutes: minutos)),
+      );
+    }
 
+    // Simula níveis, históricos antigos e pontos sem leituras.
     final List<LeituraSensor> leituras = [
       leitura(1, 1, 25, 3),
       leitura(2, 2, 65, 5),
       leitura(3, 3, 92, 1),
       leitura(4, 4, 100, 15),
-      leitura(5, 5, 40, 45), // Apenas histórico: sem dados atualizados.
-      // Ponto 6 não possui leitura.
-      leitura(6, 7, 85, 2), // Mais recente antes da antiga na lista.
+      leitura(5, 5, 40, 45),
+      // O ponto 6 não possui leitura registrada.
+      leitura(6, 7, 85, 2),
       leitura(7, 7, 20, 20),
-      leitura(8, 8, 10, 4), // Inativo, mesmo com leitura recente.
+      leitura(8, 8, 10, 4),
     ];
 
+    // Cria cinco ocorrências com tipos e estados diferentes.
     final List<Ocorrencia> ocorrencias = [
-      for (final (int indice, String descricao) in [
+      for (final (indice, descricao) in [
         'Recipiente cheio próximo ao mercado.',
         'Resíduos descartados fora do recipiente da escola.',
         'Tampa danificada no centro cultural.',
@@ -102,6 +112,7 @@ class DadosMockados {
         ),
     ];
 
+    // Retorna os dados utilizados na simulação.
     return DadosMockados._(
       usuarios: usuarios,
       pontosColeta: pontos,

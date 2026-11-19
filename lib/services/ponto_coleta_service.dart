@@ -1,9 +1,11 @@
+
 import 'package:binova_mobile/models/classificacao_ponto_coleta.dart';
 import 'package:binova_mobile/models/leitura_sensor.dart';
 import 'package:binova_mobile/models/ponto_coleta.dart';
 
-/// Consulta uma fotografia dos dados, sem alterar as coleções recebidas.
+// Responsável pelas consultas e classificações dos pontos de coleta.
 class PontoColetaService {
+  // Inicializa o serviço com cópias não modificáveis dos dados.
   PontoColetaService({
     required Iterable<PontoColeta> pontosColeta,
     required Iterable<LeituraSensor> leituras,
@@ -11,49 +13,71 @@ class PontoColetaService {
        _leituras = List.unmodifiable(leituras);
 
   static const Duration validadeLeitura = Duration(minutes: 15);
+
   final List<PontoColeta> _pontos;
   final List<LeituraSensor> _leituras;
 
-  List<PontoColeta> listarAtivos() =>
-      List.unmodifiable(_pontos.where((PontoColeta ponto) => ponto.ativo));
+  // Retorna somente os pontos de coleta ativos.
+  List<PontoColeta> listarAtivos() {
+    return List.unmodifiable(
+      _pontos.where((ponto) => ponto.ativo),
+    );
+  }
 
-  /// A busca por ID também permite consultar pontos inativos.
+  // Busca um ponto pelo ID, incluindo pontos inativos.
   PontoColeta? buscarPorId(int id) {
-    for (final PontoColeta ponto in _pontos) {
-      if (ponto.id == id) return ponto;
+    for (final ponto in _pontos) {
+      if (ponto.id == id) {
+        return ponto;
+      }
     }
+
     return null;
   }
 
-  /// IDs inexistentes não possuem histórico e retornam lista vazia.
+  // Consulta o histórico de leituras de um ponto de coleta.
   List<LeituraSensor> consultarLeituras(int pontoId) {
-    if (buscarPorId(pontoId) == null) return const [];
+    if (buscarPorId(pontoId) == null) {
+      return const [];
+    }
+
     return List.unmodifiable(
       _leituras.where(
-        (LeituraSensor leitura) => leitura.pontoColetaId == pontoId,
+        (leitura) => leitura.pontoColetaId == pontoId,
       ),
     );
   }
 
-  /// Seleciona pela data, sem ordenar nem filtrar leituras antigas ou futuras.
-  /// Em empate de data, mantém a primeira leitura encontrada.
-  LeituraSensor? obterLeituraMaisRecente(int pontoId) =>
-      _maisRecente(consultarLeituras(pontoId));
+  // Obtém a leitura mais recente registrada para o ponto.
+  LeituraSensor? obterLeituraMaisRecente(int pontoId) {
+    return _maisRecente(consultarLeituras(pontoId));
+  }
 
-  /// Null distingue um ID inexistente de um ponto sem dados atualizados.
+  // Classifica o ponto conforme o preenchimento e a data da leitura.
   ClassificacaoPontoColeta? classificarPonto(
     int pontoId, {
     required DateTime referencia,
-  }) => consultarDetalhes(pontoId, referencia: referencia)?.classificacao;
+  }) {
+    return consultarDetalhes(
+      pontoId,
+      referencia: referencia,
+    )?.classificacao;
+  }
 
+  // Reúne o ponto, seu histórico e a classificação atual.
   DetalhesPontoColeta? consultarDetalhes(
     int pontoId, {
     required DateTime referencia,
   }) {
-    final PontoColeta? ponto = buscarPorId(pontoId);
-    if (ponto == null) return null;
-    final List<LeituraSensor> historico = consultarLeituras(pontoId);
-    final LeituraSensor? recente = _maisRecente(historico);
+    final ponto = buscarPorId(pontoId);
+
+    if (ponto == null) {
+      return null;
+    }
+
+    final historico = consultarLeituras(pontoId);
+    final recente = _maisRecente(historico);
+
     return DetalhesPontoColeta(
       ponto: ponto,
       leituras: historico,
@@ -62,36 +86,50 @@ class PontoColetaService {
     );
   }
 
+  // Identifica a leitura com a data mais recente.
   LeituraSensor? _maisRecente(Iterable<LeituraSensor> leituras) {
     LeituraSensor? recente;
-    for (final LeituraSensor leitura in leituras) {
+
+    for (final leitura in leituras) {
       if (recente == null ||
           leitura.registradoEm.isAfter(recente.registradoEm)) {
         recente = leitura;
       }
     }
+
     return recente;
   }
 
+  // Define a classificação conforme as regras de preenchimento.
   ClassificacaoPontoColeta _classificar(
     LeituraSensor? leitura,
     DateTime referencia,
   ) {
-    if (leitura == null) return ClassificacaoPontoColeta.semDadosAtualizados;
-    final Duration idade = referencia.difference(leitura.registradoEm);
+    if (leitura == null) {
+      return ClassificacaoPontoColeta.semDadosAtualizados;
+    }
+
+    final idade = referencia.difference(leitura.registradoEm);
+
     if (idade.isNegative || idade > validadeLeitura) {
       return ClassificacaoPontoColeta.semDadosAtualizados;
     }
+
     if (leitura.nivelPercentual < 50) {
       return ClassificacaoPontoColeta.disponivel;
     }
-    if (leitura.nivelPercentual < 80) return ClassificacaoPontoColeta.atencao;
+
+    if (leitura.nivelPercentual < 80) {
+      return ClassificacaoPontoColeta.atencao;
+    }
+
     return ClassificacaoPontoColeta.proximaDoLimite;
   }
 }
 
-/// Resultado de consulta para uma futura apresentação de detalhes no console.
+// Armazena os detalhes consultados de um ponto de coleta.
 class DetalhesPontoColeta {
+  // Inicializa os detalhes e protege o histórico de alterações.
   DetalhesPontoColeta({
     required this.ponto,
     required List<LeituraSensor> leituras,

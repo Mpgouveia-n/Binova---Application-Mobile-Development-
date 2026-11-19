@@ -1,7 +1,9 @@
+
 import 'enums.dart';
 
-/// Dados do usuário, sem autenticação ou geração de hashes.
+// Representa os dados de um usuário do sistema.
 class Usuario {
+  // Inicializa o usuário com seus atributos.
   const Usuario({
     required this.id,
     required this.nome,
