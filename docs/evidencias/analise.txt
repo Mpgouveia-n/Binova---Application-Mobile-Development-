@@ -1,9 +1,0 @@
-Comando: dart analyze
-Executado em: 2026-11-19T15:02:00.3455407-03:00
-Codigo de saida: 0
-
---- STDOUT (capturado) ---
-Analyzing binova_mobile...
-No issues found!
-
---- STDERR (capturado) ---

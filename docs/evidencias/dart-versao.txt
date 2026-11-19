@@ -1,8 +1,0 @@
-Comando: dart --version
-Executado em: 2026-11-19T15:02:00.0046616-03:00
-Codigo de saida: 0
-
---- STDOUT (capturado) ---
-Dart SDK version: 3.13.1 (stable) (Tue Aug 18 01:00:59 2026 -0700) on "windows_x64"
-
---- STDERR (capturado) ---
