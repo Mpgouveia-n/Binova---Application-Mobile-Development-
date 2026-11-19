@@ -24,24 +24,25 @@ class BinovaConsole {
   // A aplicação principal sempre injeta uma única instância por sessão.
   final OcorrenciaService? ocorrenciaService;
 
-  // Cidadão identificado durante a sessão; não representa autenticação real.
+  // Cidadão selecionado para as operações desta sessão.
   Usuario? _usuarioAtual;
 
-  // Exibe o menu e direciona cada opção para sua funcionalidade.
+  // Solicita identificação ou cadastro antes de abrir o menu principal.
   void executar() {
     escrever('\n========================================');
     escrever('          BEM-VINDO À BINOVA');
     escrever('========================================');
 
-    while (true) {
-      final String identificacao = _usuarioAtual == null
-          ? 'Cidadão: não identificado'
-          : 'Cidadão: ${_usuarioAtual!.nome}';
+    if (!_iniciarSessao()) {
+      return;
+    }
 
+    // Mantém o menu disponível enquanto houver um cidadão identificado.
+    while (true) {
       escrever(
-        '\n===== BINOVA =====\n'
+        '\n===== MENU PRINCIPAL =====\n'
         'Monitoramento inteligente de resíduos\n'
-        '$identificacao\n'
+        'Cidadão: ${_usuarioAtual!.nome}\n'
         '----------------------------------------\n'
         '1 - Listar pontos de coleta\n\n'
         '2 - Consultar ponto por ID\n\n'
@@ -49,9 +50,8 @@ class BinovaConsole {
         '4 - Consultar minhas ocorrências\n\n'
         '5 - Pesquisar pontos por nome ou local\n\n'
         '6 - Painel geral dos pontos\n\n'
-        '7 - Identificar cidadão\n\n'
-        '8 - Fazer cadastro rápido\n\n'
-        '0 - Sair\n'
+        '7 - Sair da conta\n\n'
+        '0 - Encerrar aplicação\n'
         '----------------------------------------\n'
         'Escolha uma opção:',
       );
@@ -91,13 +91,9 @@ class BinovaConsole {
         case '6':
           _painelGeral();
         case '7':
-          if (!_identificar()) {
-            _encerrarPorEof();
-            return;
-          }
-        case '8':
-          if (!_cadastrar()) {
-            _encerrarPorEof();
+          _usuarioAtual = null;
+          escrever('Você saiu da conta.');
+          if (!_iniciarSessao()) {
             return;
           }
         case '':
@@ -106,6 +102,54 @@ class BinovaConsole {
           escrever('Opção inválida. Escolha uma opção exibida no menu.');
       }
     }
+  }
+
+  // Apresenta o acesso inicial, sem permitir navegação anônima.
+  bool _iniciarSessao() {
+    if (ocorrenciaService == null) {
+      escrever('Serviço de cidadãos não configurado.');
+      return false;
+    }
+
+    while (_usuarioAtual == null) {
+      escrever(
+        '\n===== ACESSO À BINOVA =====\n\n'
+        '1 - Entrar com cadastro existente\n\n'
+        '2 - Fazer cadastro rápido\n\n'
+        '0 - Encerrar aplicação\n'
+        '----------------------------------------\n'
+        'Escolha uma opção:',
+      );
+
+      final String? entrada = lerEntrada();
+      if (entrada == null) {
+        _encerrarPorEof();
+        return false;
+      }
+
+      switch (entrada.trim()) {
+        case '0':
+          escrever('Binova encerrada. Até logo!');
+          return false;
+        case '1':
+          if (!_identificar()) {
+            _encerrarPorEof();
+            return false;
+          }
+        case '2':
+          if (!_cadastrar()) {
+            _encerrarPorEof();
+            return false;
+          }
+        case '':
+          escrever('Selecione uma opção para continuar.');
+        default:
+          escrever('Opção inválida. Digite 1, 2 ou 0.');
+      }
+    }
+
+    escrever('\nBem-vindo(a), ${_usuarioAtual!.nome}!');
+    return true;
   }
 
   void _listarPontos() {
@@ -134,7 +178,7 @@ class BinovaConsole {
     }
   }
 
-  /// Retorna false somente quando a entrada é encerrada durante a consulta.
+  // Retorna false quando a entrada termina durante a consulta.
   bool _consultarPorId() {
     escrever('Informe o ID do ponto de coleta:');
     final String? entrada = lerEntrada();
@@ -187,31 +231,18 @@ class BinovaConsole {
     4: TipoOcorrencia.outro,
   };
 
+  // Usa o cidadão identificado para registrar ou consultar ocorrências.
   bool _operarOcorrencias({required bool registrar}) {
     final OcorrenciaService? ocorrencias = ocorrenciaService;
-    if (ocorrencias == null) {
-      escrever('Serviço de ocorrências não configurado.');
+    if (ocorrencias == null || _usuarioAtual == null) {
+      escrever('É necessário entrar na sua conta para continuar.');
       return true;
     }
+
     try {
-      escrever('\n===== IDENTIFICAÇÃO =====');
-      final List<Usuario> cidadaos = ocorrencias.listarCidadaos();
-      if (cidadaos.isEmpty) {
-        escrever('Nenhum cidadão disponível para seleção.');
-        return true;
-      }
-      int usuarioId;
-      if (_usuarioAtual != null) {
-        usuarioId = _usuarioAtual!.id;
-        escrever('Cidadão identificado: ${_usuarioAtual!.nome}');
-      } else {
-        for (final cidadao in cidadaos) {
-          escrever('ID: ${cidadao.id} - ${cidadao.nome}');
-        }
-        usuarioId = _lerId('Informe o ID do cidadão:');
-        ocorrencias.validarCidadao(usuarioId);
-        // A seleção direta mantém a navegação original sem iniciar sessão.
-      }
+      final int usuarioId = _usuarioAtual!.id;
+      ocorrencias.validarCidadao(usuarioId);
+
       if (registrar) {
         _registrarOcorrencia(ocorrencias, usuarioId);
       } else {
@@ -375,7 +406,7 @@ class BinovaConsole {
     }
     final resultados = ocorrencias.pesquisarCidadaos(termo);
     if (resultados.isEmpty) {
-      escrever('Cidadão não encontrado. Use a opção 8 para se cadastrar.');
+      escrever('Cidadão não encontrado. Volte e escolha Fazer cadastro rápido.');
       return true;
     }
     if (resultados.length == 1) {
