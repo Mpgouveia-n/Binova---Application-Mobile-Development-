@@ -25,11 +25,22 @@ O projeto está alinhado a dois Objetivos de Desenvolvimento Sustentável da Age
 
 A proposta original de Mobile Application Development previa o desenvolvimento em Flutter, com navegação entre telas, gerenciamento de estado e formulários próprios de uma interface gráfica.
 
-Para a entrega do Binova, **foi autorizado o desenvolvimento em Dart puro, por meio de uma aplicação de console, em substituição à implementação em Flutter**. Também foi concedida **dispensa dos requisitos 3 (gerenciamento de estado com `StatefulWidget` e `setState()`) e 4 (formulário com `Form`, `TextFormField` e validação visual)**, pois esses recursos são específicos do fluxo de interface gráfica previsto inicialmente.
+Para a entrega do Binova, **o professor autorizou o desenvolvimento em Dart puro, por meio de uma aplicação de console, em substituição à implementação em Flutter**. Também foi concedida **dispensa dos requisitos 3 (gerenciamento de estado com `StatefulWidget` e `setState()`) e 4 (formulário com `Form`, `TextFormField` e validação visual)**, pois esses recursos são específicos do fluxo de interface gráfica previsto inicialmente.
 
 Por esse motivo, o repositório não contém um aplicativo Flutter, telas implementadas com widgets nem esses componentes de formulário e gerenciamento de estado. No Dart Console, as interações equivalentes são realizadas por menus, leitura de dados, validações e serviços. A apresentação visual da solução está disponível separadamente no protótipo de cinco telas do Figma.
 
 Essa adaptação diz respeito ao formato autorizado para a disciplina e não altera a proposta CitizenTech do projeto.
+
+
+## Por que existe uma pasta de integração com a API Java?
+
+Além da aplicação original de Mobile em Dart Console, o repositório contém a pasta `lib/api/`, criada **para atender a uma solicitação da disciplina de Java Advanced**: demonstrar a comunicação entre a API Java Spring Boot e uma aplicação Mobile.
+
+**Essa integração não foi exigida pelo professor de Mobile Application Development.** Por isso, foi desenvolvida como uma versão complementar e independente, sem substituir a entrega original da disciplina, seus dados simulados ou seu fluxo de execução.
+
+A aplicação principal de Mobile continua sendo executada com `dart run bin/main.dart` e **não depende de Java, servidor HTTP ou banco de dados**. A versão integrada possui arquivos e inicialização próprios, separados dentro de `lib/api/`. Sua documentação e o procedimento de execução ficam no **[README específico da integração](lib/api/README.md)**, sem necessidade de seguir essas instruções para avaliar a entrega de Mobile.
+
+Para referência, o projeto Java Advanced está disponível no **[repositório da API Java](https://github.com/GustavoSiciliano/GlobalSolution_2026_Java)**, e sua demonstração está no **[vídeo de Java](https://youtu.be/2SlwoG4p7Oc)**.
 
 ## Tecnologias utilizadas
 
@@ -38,7 +49,7 @@ Essa adaptação diz respeito ao formato autorizado para a disciplina e não alt
 - **Figma**, para o protótipo visual com cinco telas.
 - **Pacotes `test` e `lints`**, utilizados no desenvolvimento.
 
-A aplicação em Dart não exige Flutter, emulador, servidor, banco de dados ou conexão com sensores para ser executada. Os níveis dos recipientes são simulados e não representam medições físicas em tempo real.
+A **versão original** em Dart não exige Flutter, emulador, servidor, banco de dados ou conexão com sensores para ser executada. Os níveis dos recipientes são simulados e não representam medições físicas em tempo real.
 
 ## Funcionalidades
 
@@ -86,6 +97,7 @@ Os registros são armazenados em memória. Ao encerrar e iniciar novamente a apl
 | `lib/data/` | Conjunto inicial de informações utilizadas pela aplicação. |
 | `lib/services/` | Consultas, validações, classificação de pontos e gerenciamento de ocorrências. |
 | `lib/console/` | Tela inicial de acesso, menus, pesquisas e apresentação dos resultados. |
+| `lib/api/` | Versão complementar de integração HTTP com a API Java, desenvolvida para a disciplina de Java Advanced; separada do Mobile original. |
 | `test/` | Testes dos modelos, serviços e fluxos do console. |
 
 A separação por responsabilidades facilita a leitura do código e permite manter as regras de negócio independentes da apresentação no terminal.
@@ -125,7 +137,7 @@ cd binova_mobile
 dart pub get
 ```
 
-### 4. Iniciar o Binova
+### 4. Iniciar o Binova (versão original de Mobile)
 
 ```powershell
 dart run bin/main.dart
@@ -219,7 +231,8 @@ A evolução do desenvolvimento pode ser acompanhada pela seção de commits do 
 
 ## Uso de inteligência artificial generativa
 
-O grupo utilizou **ChatGPT (OpenAI)** como ferramenta de apoio à organização da documentação, esclarecimento de conceitos, revisão de trechos de código e análise de possíveis erros.
+O grupo utilizou **ChatGPT (OpenAI)** como ferramenta de apoio à organização da documentação, esclarecimento de conceitos, revisão de trechos de código e análise de possíveis erros. 
+
 ## Integrantes
 
 | Integrante | RM |
